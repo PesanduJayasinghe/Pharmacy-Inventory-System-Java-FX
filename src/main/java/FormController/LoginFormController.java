@@ -2,9 +2,16 @@ package FormController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
 import javax.swing.*;
+import java.io.IOException;
 
 
 public class LoginFormController {
@@ -13,6 +20,7 @@ public class LoginFormController {
     private TextField username;
     private TextField password;
 
+    Stage stage=new Stage();
 
     @FXML
     private AnchorPane adminPane;
@@ -58,8 +66,13 @@ public class LoginFormController {
     }
 
     @FXML
-    void btnAdminLogin(ActionEvent event) {
+    void btnAdminLogin(ActionEvent event) throws IOException {
         if (txtAdminUsername.getText().equalsIgnoreCase("owner") && txtAdminPassword.getText().equalsIgnoreCase("1234")){
+            Parent root= FXMLLoader.load(getClass().getResource("/View/MedicineForm.fxml"));
+            stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Medicines");
+            stage.show();
 
         }else{
             errorMessagePane.setVisible(true);

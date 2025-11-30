@@ -2,7 +2,7 @@ package Config;
 
 import Model.DTO.MedicineDto;
 import Model.DTO.SalesDto;
-import Model.DTO.SalesItemDto;
+import Model.DTO.SaleItemsDto;
 import Model.DTO.SupplierDto;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -19,7 +19,7 @@ public class HibernateUtil {
             configuration.configure();
             configuration.addAnnotatedClasses(MedicineDto.class);
             configuration.addAnnotatedClasses(SalesDto.class);
-            configuration.addAnnotatedClasses(SalesItemDto.class);
+            configuration.addAnnotatedClasses(SaleItemsDto.class);
             configuration.addAnnotatedClasses(SupplierDto.class);
 
             sessionFactory=configuration.buildSessionFactory();
