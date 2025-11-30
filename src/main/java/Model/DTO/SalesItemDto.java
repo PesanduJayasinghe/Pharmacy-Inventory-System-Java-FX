@@ -1,5 +1,7 @@
 package Model.DTO;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.*;
 
 @Getter
@@ -7,6 +9,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+
+@Entity
+@Table(name = "salesItem")
 public class SalesItemDto {
 
     private String saleItemId;

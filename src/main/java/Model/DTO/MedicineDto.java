@@ -1,5 +1,7 @@
 package Model.DTO;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.*;
 
 import java.util.Date;
@@ -10,6 +12,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+
+@Entity
+@Table (name = "medicines")
 public class MedicineDto {
 
     private String medicineId;
