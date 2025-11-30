@@ -12,7 +12,7 @@ import lombok.*;
 
 @Entity
 @Table(name = "salesItem")
-public class SalesItemDto {
+public class SaleItemsDto {
 
     private String saleItemId;
     private String saleId;
