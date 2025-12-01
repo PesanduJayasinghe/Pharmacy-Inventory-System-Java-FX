@@ -16,7 +16,7 @@ public class HibernateUtil {
 
         if (sessionFactory ==null){
 
-            configuration.configure();
+            configuration.configure("hibernate.cfg.xml");
             configuration.addAnnotatedClasses(MedicineDto.class);
             configuration.addAnnotatedClasses(SalesDto.class);
             configuration.addAnnotatedClasses(SaleItemsDto.class);
