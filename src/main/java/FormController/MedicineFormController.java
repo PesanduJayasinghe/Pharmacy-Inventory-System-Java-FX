@@ -3,6 +3,8 @@ package FormController;
 import Model.DTO.MedicineDto;
 import Service.Medicine.MedicineControl;
 import Service.Medicine.MedicineService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,20 +12,21 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 
 public class MedicineFormController implements Initializable {
 
     MedicineService medicineService=new MedicineControl();
+
 
 
     @FXML
@@ -69,13 +72,18 @@ public class MedicineFormController implements Initializable {
     private DatePicker txtDate;
 
     @FXML
+    private TableView<MedicineDto> tblMedicine;
+
+    @FXML
+    private AnchorPane medicinePane;
+
+    @FXML
     void btnAdd(ActionEvent event) {
         String id = txtMediId.getText();
         String name = txtName.getText();
 
         if (id.isEmpty() || name.isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Please fill all required fields ( ID & Name )").show();
-            return;
         }else{
             String brand = txtBrand.getText();
             String exDate= String.valueOf(txtDate.getValue());
@@ -83,6 +91,9 @@ public class MedicineFormController implements Initializable {
             double price= Double.parseDouble(txtPrice.getText());
             String supplierId= txtSupplierId.getText();
             medicineService.addMedicine(new MedicineDto(id, name, brand, exDate, quantity, price, supplierId));
+
+            loadMedicineTable();
+            clearFields();
         }
 
     }
@@ -103,23 +114,54 @@ public class MedicineFormController implements Initializable {
     }
 
     @FXML
-    void btnOrderDetails(ActionEvent event) {
-
+    void btnSaleItems(ActionEvent event) throws IOException {
+        Stage stage;
+        Parent root= FXMLLoader.load(getClass().getResource("/View/SaleItemForm.fxml"));
+        stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Order");
+        stage.show();
     }
 
     @FXML
-    void btnOrders(ActionEvent event) {
-
+    void btnSales(ActionEvent event) throws IOException {
+        Stage stage;
+        Parent root= FXMLLoader.load(getClass().getResource("/View/SalesForm.fxml"));
+        stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Order");
+        stage.show();
     }
 
     @FXML
-    void btnSupplier(ActionEvent event) {
-
+    void btnSupplier(ActionEvent event) throws IOException {
+        Stage stage;
+        Parent root= FXMLLoader.load(getClass().getResource("/View/SupplierForm.fxml"));
+        stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Order");
+        stage.show();
     }
 
     @FXML
     void btnUpdate(ActionEvent event) {
+        String id = txtMediId.getText();
+        String name = txtName.getText();
 
+        if (id.isEmpty() || name.isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Please fill all required fields ( ID & Name )").show();
+        }else{
+            String brand = txtBrand.getText();
+            String exDate= String.valueOf(txtDate.getValue());
+            int quantity= Integer.parseInt(txtQuantity.getText());
+            double price= Double.parseDouble(txtPrice.getText());
+            String supplierId= txtSupplierId.getText();
+
+            medicineService.updateMedicine(new MedicineDto(id, name, brand, exDate, quantity, price, supplierId));
+        }
+
+        loadMedicineTable();
+        clearFields();
     }
 
     @FXML
@@ -130,6 +172,10 @@ public class MedicineFormController implements Initializable {
     @FXML
     void btndelete(ActionEvent event) {
 
+        medicineService.deleteMedicine(txtMediId.getText());
+        loadMedicineTable();
+        clearFields();
+
     }
 
     private void clearFields() {
@@ -138,10 +184,41 @@ public class MedicineFormController implements Initializable {
         txtBrand.clear();
         txtPrice.clear();
         txtQuantity.clear();
+        txtSupplierId.clear();
+        txtDate.setValue(null);
     }
 
-    @Override
+    @Override @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        col_med_id.setCellValueFactory(new PropertyValueFactory<>("medicineId"));
+        col_name.setCellValueFactory(new PropertyValueFactory<>("brand"));
+        col_brand.setCellValueFactory(new PropertyValueFactory<>("expiryDate"));
+        col_exp_date.setCellValueFactory(new PropertyValueFactory<>("name"));
+        col_qty.setCellValueFactory(new PropertyValueFactory<>("price"));
+        col_price.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        col_supplier_id.setCellValueFactory(new PropertyValueFactory<>("supplierId"));
 
+        loadMedicineTable();
+
+        tblMedicine.getSelectionModel().selectedItemProperty().addListener((observableValue, medicineDto, t1) -> {
+            if (t1 != null) {
+                txtMediId.setText(t1.getMedicineId());
+                txtName.setText(t1.getName());
+                txtBrand.setText(t1.getBrand());
+                txtDate.setValue(LocalDate.parse(t1.getExpiryDate()));
+                txtQuantity.setText(String.valueOf(t1.getQuantity()));
+                txtPrice.setText(String.valueOf(t1.getPrice()));
+                txtSupplierId.setText(t1.getSupplierId());
+
+            }
+
+        });
+
+
+    }
+
+    private void loadMedicineTable() {
+
+        tblMedicine.setItems(medicineService.getMedicineDetails());
     }
 }
