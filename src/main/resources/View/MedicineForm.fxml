@@ -18,99 +18,107 @@
             <Image url="@../Images/Admin%20Table%202.png" />
          </image>
       </ImageView>
-      <Label layoutX="263.0" layoutY="142.0" prefHeight="18.0" prefWidth="91.0" text="Medicine ID">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="430.0" layoutY="142.0" prefHeight="18.0" prefWidth="91.0" text="Name">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="600.0" layoutY="142.0" prefHeight="18.0" prefWidth="91.0" text="Brand">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="263.0" layoutY="225.0" prefHeight="18.0" prefWidth="91.0" text="Expiery Date">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="430.0" layoutY="225.0" prefHeight="18.0" prefWidth="91.0" text="Quantity">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="600.0" layoutY="225.0" prefHeight="18.0" prefWidth="91.0" text="Price">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="263.0" layoutY="316.0" prefHeight="18.0" prefWidth="91.0" text="Supplier ID">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Button layoutX="65.0" layoutY="133.0" mnemonicParsing="false" onAction="#btnHomepage" prefHeight="42.0" prefWidth="166.0" style="-fx-background-color: #00000000;" text="🏠 Homepage" textFill="#d70000">
-         <font>
-            <Font name="System Bold Italic" size="15.0" />
-         </font>
-      </Button>
-      <Button alignment="BASELINE_LEFT" layoutX="65.0" layoutY="195.0" mnemonicParsing="false" onAction="#btnMedicine" prefHeight="42.0" prefWidth="166.0" style="-fx-background-color: #00000000;" text="          Medicine" textFill="WHITE">
-         <font>
-            <Font name="System Bold Italic" size="15.0" />
-         </font>
-      </Button>
-      <Button alignment="BASELINE_LEFT" layoutX="65.0" layoutY="254.0" mnemonicParsing="false" onAction="#btnSupplier" prefHeight="42.0" prefWidth="166.0" style="-fx-background-color: #00000000;" text="           Supplier" textFill="WHITE">
-         <font>
-            <Font name="System Bold Italic" size="15.0" />
-         </font>
-      </Button>
-      <Button alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutX="67.0" layoutY="317.0" mnemonicParsing="false" onAction="#btnOrders" prefHeight="42.0" prefWidth="166.0" style="-fx-background-color: #00000000;" text="            Orders" textFill="WHITE">
-         <font>
-            <Font name="System Bold Italic" size="15.0" />
-         </font>
-      </Button>
-      <Button alignment="BASELINE_LEFT" layoutX="67.0" layoutY="378.0" mnemonicParsing="false" onAction="#btnOrderDetails" prefHeight="42.0" prefWidth="166.0" style="-fx-background-color: #00000000;" text="       Order Details" textFill="WHITE">
-         <font>
-            <Font name="System Bold Italic" size="15.0" />
-         </font>
-      </Button>
-      <Button alignment="CENTER" layoutX="67.0" layoutY="434.0" mnemonicParsing="false" onAction="#btnWarnings" prefHeight="42.0" prefWidth="166.0" style="-fx-background-color: #00000000;" text="Warnings" textFill="#ff0b0b">
-         <font>
-            <Font name="System Bold Italic" size="15.0" />
-         </font>
-      </Button>
-      <TextField fx:id="txtMediId" layoutX="259.0" layoutY="167.0" prefHeight="27.0" prefWidth="138.0" style="-fx-background-color: #00000000; -fx-border-color: green; -fx-border-radius: 70;" />
-      <TextField fx:id="txtName" layoutX="429.0" layoutY="167.0" prefHeight="27.0" prefWidth="138.0" style="-fx-background-color: #00000000; -fx-border-color: green; -fx-border-radius: 70;" />
-      <TextField fx:id="txtBrand" layoutX="597.0" layoutY="167.0" prefHeight="27.0" prefWidth="138.0" style="-fx-background-color: #00000000; -fx-border-color: green; -fx-border-radius: 70;" />
-      <TextField fx:id="txtQuantity" layoutX="430.0" layoutY="253.0" prefHeight="27.0" prefWidth="138.0" style="-fx-background-color: #00000000; -fx-border-color: green; -fx-border-radius: 70;" />
-      <TextField fx:id="txtPrice" layoutX="598.0" layoutY="253.0" prefHeight="27.0" prefWidth="138.0" style="-fx-background-color: #00000000; -fx-border-color: green; -fx-border-radius: 70;" />
-      <TextField fx:id="txtSupplierId" layoutX="261.0" layoutY="345.0" prefHeight="27.0" prefWidth="137.0" style="-fx-background-color: #00000000; -fx-border-color: green; -fx-border-radius: 70;" />
-      <DatePicker fx:id="txtDate" layoutX="261.0" layoutY="254.0" prefHeight="27.0" prefWidth="138.0" style="-fx-background-color: #00000000; -fx-border-color: green; -fx-border-radius: 5;" />
-      <TableView layoutX="240.0" layoutY="399.0" prefHeight="200.0" prefWidth="535.0" style="-fx-background-color: #00000000; -fx-border-color: blue; -fx-border-radius: 5;">
-        <columns>
-          <TableColumn fx:id="col_med_id" prefWidth="75.0" text="Med ID" />
-          <TableColumn fx:id="col_name" prefWidth="75.0" text="Name" />
-            <TableColumn fx:id="col_brand" prefWidth="75.0" text="Brand" />
-            <TableColumn fx:id="col_exp_date" prefWidth="75.0" text="EXP Date" />
-            <TableColumn fx:id="col_qty" prefWidth="75.0" text="Quantity" />
-            <TableColumn fx:id="col_price" prefWidth="75.0" text="Price" />
-            <TableColumn fx:id="col_supplier_id" prefWidth="83.20000000000005" text="Supplier ID" />
-        </columns>
-      </TableView>
-      <Button layoutX="447.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnAdd" prefHeight="44.0" prefWidth="50.0" style="-fx-border-color: red; -fx-border-width: 2;" text="➕" textAlignment="CENTER" textFill="#240bff" />
-      <Button layoutX="540.0" layoutY="328.0" mnemonicParsing="false" onAction="#btnUpdate" prefHeight="44.0" prefWidth="50.0" style="-fx-border-color: red; -fx-border-width: 2;" text="♻" textAlignment="CENTER" textFill="#039c1d">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Button>
-      <Button layoutX="641.0" layoutY="329.0" mnemonicParsing="false" onAction="#btndelete" prefHeight="42.0" prefWidth="50.0" style="-fx-border-color: red; -fx-border-width: 2;" text="🚮">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Button>
+      <AnchorPane fx:id="buttonPane" layoutX="67.0" layoutY="95.0" prefHeight="522.0" prefWidth="166.0">
+         <children>
+            <Button alignment="CENTER" layoutY="327.0" mnemonicParsing="false" onAction="#btnWarnings" prefHeight="42.0" prefWidth="166.0" style="-fx-background-color: #00000000;" text="Warnings" textFill="#ff0b0b">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" layoutY="209.0" mnemonicParsing="false" onAction="#btnSaleItems" prefHeight="42.0" prefWidth="166.0" style="-fx-background-color: #00000000;" text="Sale Items" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutY="154.0" mnemonicParsing="false" onAction="#btnSales" prefHeight="42.0" prefWidth="166.0" style="-fx-background-color: #00000000;" text="            Sales" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" layoutY="273.0" mnemonicParsing="false" onAction="#btnSupplier" prefHeight="42.0" prefWidth="166.0" style="-fx-background-color: #00000000;" text="           Supplier" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" layoutY="97.0" mnemonicParsing="false" onAction="#btnMedicine" prefHeight="42.0" prefWidth="166.0" style="-fx-background-color: #00000000;" text="          Medicine" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <Button layoutY="38.0" mnemonicParsing="false" onAction="#btnHomepage" prefHeight="42.0" prefWidth="166.0" style="-fx-background-color: #00000000;" text="🏠 Homepage" textFill="#d70000">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="medicinePane" layoutX="233.0" layoutY="95.0" prefHeight="522.0" prefWidth="548.0">
+         <children>
+            <Label layoutX="31.0" layoutY="47.0" prefHeight="18.0" prefWidth="91.0" text="Medicine ID">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="200.0" layoutY="47.0" prefHeight="18.0" prefWidth="91.0" text="Name">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="369.0" layoutY="47.0" prefHeight="18.0" prefWidth="91.0" text="Brand">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="135.0" prefHeight="18.0" prefWidth="91.0" text="Expiery Date">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="200.0" layoutY="135.0" prefHeight="18.0" prefWidth="91.0" text="Quantity">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="373.0" layoutY="135.0" prefHeight="18.0" prefWidth="91.0" text="Price">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="220.0" prefHeight="18.0" prefWidth="91.0" text="Supplier ID">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtMediId" layoutX="25.0" layoutY="71.0" prefHeight="27.0" prefWidth="138.0" style="-fx-background-color: #00000000; -fx-border-color: green; -fx-border-radius: 70;" />
+            <TextField fx:id="txtName" layoutX="195.0" layoutY="71.0" prefHeight="27.0" prefWidth="138.0" style="-fx-background-color: #00000000; -fx-border-color: green; -fx-border-radius: 70;" />
+            <TextField fx:id="txtBrand" layoutX="364.0" layoutY="72.0" prefHeight="27.0" prefWidth="138.0" style="-fx-background-color: #00000000; -fx-border-color: green; -fx-border-radius: 70;" />
+            <TextField fx:id="txtQuantity" layoutX="199.0" layoutY="161.0" prefHeight="27.0" prefWidth="138.0" style="-fx-background-color: #00000000; -fx-border-color: green; -fx-border-radius: 70;" />
+            <TextField fx:id="txtPrice" layoutX="366.0" layoutY="161.0" prefHeight="27.0" prefWidth="138.0" style="-fx-background-color: #00000000; -fx-border-color: green; -fx-border-radius: 70;" />
+            <TextField fx:id="txtSupplierId" layoutX="26.0" layoutY="248.0" prefHeight="27.0" prefWidth="137.0" style="-fx-background-color: #00000000; -fx-border-color: green; -fx-border-radius: 70;" />
+            <DatePicker fx:id="txtDate" layoutX="27.0" layoutY="162.0" prefHeight="27.0" prefWidth="138.0" style="-fx-background-color: #00000000; -fx-border-color: green; -fx-border-radius: 5;" />
+            <TableView fx:id="tblMedicine" layoutX="6.0" layoutY="308.0" prefHeight="200.0" prefWidth="535.0" style="-fx-background-color: #00000000; -fx-border-color: blue; -fx-border-radius: 5;">
+               <columns>
+                  <TableColumn fx:id="col_med_id" prefWidth="75.0" text="Med ID" />
+                  <TableColumn fx:id="col_name" prefWidth="75.0" text="Name" />
+                  <TableColumn fx:id="col_brand" prefWidth="75.0" text="Brand" />
+                  <TableColumn fx:id="col_exp_date" prefWidth="75.0" text="EXP Date" />
+                  <TableColumn fx:id="col_qty" prefWidth="75.0" text="Quantity" />
+                  <TableColumn fx:id="col_price" prefWidth="75.0" text="Price" />
+                  <TableColumn fx:id="col_supplier_id" prefWidth="83.20000000000005" text="Supplier ID" />
+               </columns>
+            </TableView>
+            <Button layoutX="220.0" layoutY="227.0" mnemonicParsing="false" onAction="#btnAdd" prefHeight="44.0" prefWidth="50.0" style="-fx-border-color: red; -fx-border-width: 2;" text="➕" textAlignment="CENTER" textFill="#240bff" />
+            <Button layoutX="313.0" layoutY="227.0" mnemonicParsing="false" onAction="#btnUpdate" prefHeight="44.0" prefWidth="50.0" style="-fx-border-color: red; -fx-border-width: 2;" text="♻" textAlignment="CENTER" textFill="#039c1d">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button layoutX="413.0" layoutY="227.0" mnemonicParsing="false" onAction="#btndelete" prefHeight="42.0" prefWidth="50.0" style="-fx-border-color: red; -fx-border-width: 2;" text="🚮">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
