@@ -8,7 +8,7 @@
         <property name="hibernate.connection.password">1234</property>
 
 
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.hbm2ddl.auto">validate</property>
         <property name="hibernate.show.sql">true</property>
 
 
