@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" prefHeight="554.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FormController.SupplierFormController">
+   <children>
+      <ImageView fitHeight="665.0" fitWidth="859.0" layoutX="1.0" layoutY="1.0">
+         <image>
+            <Image url="@../Images/Admin%20Table%202.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="supplierPane" layoutX="233.0" layoutY="92.0" prefHeight="428.0" prefWidth="469.0">
+         <children>
+            <ImageView fitHeight="509.0" fitWidth="547.0">
+               <image>
+                  <Image url="@../Images/Supplier2.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="txtSupplierId" layoutX="40.0" layoutY="49.0" prefHeight="32.0" prefWidth="211.0" promptText="Supplier ID" style="-fx-background-color: #00000000;">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtName" layoutX="287.0" layoutY="49.0" prefHeight="32.0" prefWidth="211.0" promptText="Name" style="-fx-background-color: #00000000;">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtContact" layoutX="42.0" layoutY="102.0" prefHeight="32.0" prefWidth="211.0" promptText="Contact " style="-fx-background-color: #00000000;">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtAddress" layoutX="291.0" layoutY="101.0" prefHeight="32.0" prefWidth="211.0" promptText="Address" style="-fx-background-color: #00000000;">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <TableView fx:id="tblSupplier" layoutX="16.0" layoutY="227.0" prefHeight="252.0" prefWidth="512.0" style="-fx-border-width: 2; -fx-border-color: blue; -fx-border-radius: 5;">
+              <columns>
+                <TableColumn fx:id="col_supplier_id" prefWidth="81.66665649414062" text="Supplier ID " />
+                <TableColumn fx:id="col_name" prefWidth="145.33334350585938" text="Name" />
+                  <TableColumn fx:id="col_contact" prefWidth="131.66668701171875" text="Contact" />
+                  <TableColumn fx:id="col_address" prefWidth="151.33331298828125" text="Address" />
+              </columns>
+            </TableView>
+            <Button layoutX="375.0" layoutY="165.0" mnemonicParsing="false" onAction="#btndelete" prefHeight="42.0" prefWidth="50.0" style="-fx-border-color: red; -fx-border-width: 2;" text="🚮">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Button>
+            <Button layoutX="246.0" layoutY="164.0" mnemonicParsing="false" onAction="#btnUpdate" prefHeight="44.0" prefWidth="50.0" style="-fx-border-color: red; -fx-border-width: 2;" text="♻" textAlignment="CENTER" textFill="#039c1d">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button layoutX="133.0" layoutY="164.0" mnemonicParsing="false" onAction="#btnAdd" prefHeight="44.0" prefWidth="50.0" style="-fx-border-color: red; -fx-border-width: 2;" text="➕" textAlignment="CENTER" textFill="#240bff" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="buttonPane" layoutX="67.0" layoutY="92.0" prefHeight="522.0" prefWidth="166.0">
+         <children>
+            <Button alignment="CENTER" layoutY="327.0" mnemonicParsing="false" onAction="#btnWarnings" prefHeight="42.0" prefWidth="166.0" style="-fx-background-color: #00000000;" text="Warnings" textFill="#ff0b0b">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" layoutY="209.0" mnemonicParsing="false" onAction="#btnSaleItems" prefHeight="42.0" prefWidth="166.0" style="-fx-background-color: #00000000;" text="Sale Items" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" contentDisplay="CENTER" layoutY="154.0" mnemonicParsing="false" onAction="#btnSales" prefHeight="42.0" prefWidth="166.0" style="-fx-background-color: #00000000;" text="            Sales" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" layoutY="273.0" mnemonicParsing="false" onAction="#btnSupplier" prefHeight="42.0" prefWidth="166.0" style="-fx-background-color: #00000000;" text="           Supplier" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" layoutY="97.0" mnemonicParsing="false" onAction="#btnMedicine" prefHeight="42.0" prefWidth="166.0" style="-fx-background-color: #00000000;" text="          Medicine" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+            <Button layoutY="38.0" mnemonicParsing="false" onAction="#btnHomepage" prefHeight="42.0" prefWidth="166.0" style="-fx-background-color: #00000000;" text="🏠 Homepage" textFill="#d70000">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
