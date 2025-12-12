@@ -37,5 +37,8 @@ public class MedicineControl implements MedicineService{
        return medicineRepository.getMedicineChoiceList();
     }
 
-
+    @Override
+    public void updateStock(String id, int qty) {
+        medicineRepository.updateStock(id,qty);
+    }
 }
