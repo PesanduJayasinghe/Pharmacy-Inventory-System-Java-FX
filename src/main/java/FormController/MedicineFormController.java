@@ -86,7 +86,7 @@ public class MedicineFormController implements Initializable {
             new Alert(Alert.AlertType.WARNING, "Please fill all required fields ( ID & Name )").show();
         }else{
             String brand = txtBrand.getText();
-            String exDate= String.valueOf(txtDate.getValue());
+            LocalDate exDate= LocalDate.parse(txtDate.getValue().toString());
             int quantity= Integer.parseInt(txtQuantity.getText());
             double price= Double.parseDouble(txtPrice.getText());
             String supplierId= txtSupplierId.getText();
@@ -152,7 +152,7 @@ public class MedicineFormController implements Initializable {
             new Alert(Alert.AlertType.WARNING, "Please fill all required fields ( ID & Name )").show();
         }else{
             String brand = txtBrand.getText();
-            String exDate= String.valueOf(txtDate.getValue());
+            LocalDate exDate= LocalDate.parse(txtDate.getValue().toString());
             int quantity= Integer.parseInt(txtQuantity.getText());
             double price= Double.parseDouble(txtPrice.getText());
             String supplierId= txtSupplierId.getText();
@@ -191,12 +191,13 @@ public class MedicineFormController implements Initializable {
     @Override @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
         col_med_id.setCellValueFactory(new PropertyValueFactory<>("medicineId"));
-        col_name.setCellValueFactory(new PropertyValueFactory<>("brand"));
-        col_brand.setCellValueFactory(new PropertyValueFactory<>("expiryDate"));
-        col_exp_date.setCellValueFactory(new PropertyValueFactory<>("name"));
-        col_qty.setCellValueFactory(new PropertyValueFactory<>("price"));
-        col_price.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        col_brand.setCellValueFactory(new PropertyValueFactory<>("brand"));
+        col_exp_date.setCellValueFactory(new PropertyValueFactory<>("expiryDate"));
+        col_qty.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        col_price.setCellValueFactory(new PropertyValueFactory<>("price"));
         col_supplier_id.setCellValueFactory(new PropertyValueFactory<>("supplierId"));
+
 
         loadMedicineTable();
 
@@ -205,7 +206,7 @@ public class MedicineFormController implements Initializable {
                 txtMediId.setText(t1.getMedicineId());
                 txtName.setText(t1.getName());
                 txtBrand.setText(t1.getBrand());
-                txtDate.setValue(LocalDate.parse(t1.getExpiryDate()));
+                txtDate.setValue(LocalDate.parse(t1.getExpiryDate().toString()));
                 txtQuantity.setText(String.valueOf(t1.getQuantity()));
                 txtPrice.setText(String.valueOf(t1.getPrice()));
                 txtSupplierId.setText(t1.getSupplierId());
