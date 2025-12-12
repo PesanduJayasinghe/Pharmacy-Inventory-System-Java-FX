@@ -17,4 +17,6 @@ public interface MedicineRepository {
     void deleteMedicine(String id);
 
     List<MedicineSale> getMedicineChoiceList();
+
+    void updateStock(String id, int qty);
 }
