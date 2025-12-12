@@ -1,5 +1,6 @@
 package Model.DTO;
 
+import jakarta.persistence.Id;
 import lombok.*;
 
 import java.util.Date;

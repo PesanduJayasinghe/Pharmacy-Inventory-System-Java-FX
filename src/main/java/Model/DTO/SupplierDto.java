@@ -1,8 +1,6 @@
 package Model.DTO;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.Id;
 import lombok.*;
 
 @Getter
@@ -10,11 +8,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-
-@Entity
-@Table(name = "supplier")
 public class SupplierDto {
 
+    @Id
     private String supplierId;
     private String name;
     private String contact;
