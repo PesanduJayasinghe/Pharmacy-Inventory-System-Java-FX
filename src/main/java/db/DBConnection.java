@@ -4,19 +4,19 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DB {
+public class DBConnection {
 
-    private static DB instance;
+    private static DBConnection instance;
 
     private Connection connection;
 
-    private DB() throws SQLException {
+    private DBConnection() throws SQLException {
         connection= DriverManager.getConnection("jdbc:mysql://localhost:3306/pharmacy", "root", "1234");
     }
 
-    public static DB getInstance() throws SQLException {
+    public static DBConnection getInstance() throws SQLException {
         if(instance == null){
-            instance=new DB();
+            instance=new DBConnection();
         }
         return instance;
     }
