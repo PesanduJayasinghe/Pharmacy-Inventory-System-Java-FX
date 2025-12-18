@@ -1,7 +1,5 @@
 package FormController;
 
-
-import Model.DTO.MedicineDto;
 import Model.DTO.MedicineSale;
 import Model.DTO.SalesDto;
 import Service.Medicine.MedicineControl;
@@ -12,10 +10,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
@@ -89,11 +94,52 @@ public class SalesFormController implements Initializable {
         totalAmount += total;
         txtTotalAmount.setText(String.valueOf(totalAmount));
 
+        list = medicineService.getMedicineChoiceList();
+
+        // 3. Update prompt text using refreshed list
+        updateSelectedMedicineDetails(txtMedID.getValue());
+
+        loadMedicineChoiceBox();
+
         clearFields();
+
     }
 
     @FXML
     void btnCancel(ActionEvent event) {
+
+        // 1. Restore stock for each added sale item
+        for (MedicineSale item : saleItemList) {
+            // add quantity back to DB
+            medicineService.updateStock(
+                    item.getMedicineId(),
+                    -item.getQuantity()   // negative = add back
+            );
+        }
+
+        // 2. Clear table data
+        saleItemList.clear();
+        tblSalesItem.refresh();
+
+        // 3. Reset totals
+        totalAmount = 0.0;
+        txtTotalAmount.clear();
+
+        // 4. Clear input fields
+        clearFields();
+
+        // 5. Reload medicine list (to show correct stock again)
+        loadMedicineChoiceBox();
+
+        // 6. Generate new Sale ID
+        txtSaleID.setText(saleItemId());
+
+        // Optional info alert
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Cancelled");
+        alert.setHeaderText(null);
+        alert.setContentText("Sale cancelled. Stock restored.");
+        alert.showAndWait();
 
     }
 
@@ -118,28 +164,50 @@ public class SalesFormController implements Initializable {
 
 
     @FXML
-    void btnHomepage(ActionEvent event) {
+    void btnHomepage(ActionEvent event) throws IOException {
+        Stage stage;
+        Parent root= FXMLLoader.load(getClass().getResource("/View/LoginForm.fxml"));
+        stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Homepage");
+        stage.show();
 
     }
 
     @FXML
-    void btnMedicine(ActionEvent event) {
+    void btnMedicine(ActionEvent event) throws IOException {
+        Stage stage;
+        Parent root= FXMLLoader.load(getClass().getResource("/View/MedicineForm.fxml"));
+        stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Medicine");
+        stage.show();
 
     }
 
     @FXML
-    void btnSaleItems(ActionEvent event) {
+    void btnSaleItems(ActionEvent event) throws IOException {
+        Stage stage;
+        Parent root= FXMLLoader.load(getClass().getResource("/View/SaleItemForm.fxml"));
+        stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Sale Items");
+        stage.show();
+    }
+
+    @FXML
+    void btnSales(ActionEvent event) throws IOException {
 
     }
 
     @FXML
-    void btnSales(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnSupplier(ActionEvent event) {
-
+    void btnSupplier(ActionEvent event) throws IOException {
+        Stage stage;
+        Parent root= FXMLLoader.load(getClass().getResource("/View/SupplierForm.fxml"));
+        stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Supplier");
+        stage.show();
     }
 
     @FXML
@@ -165,6 +233,15 @@ public class SalesFormController implements Initializable {
         // Update total amount
         totalAmount = saleItemList.stream().mapToDouble(MedicineSale::getPrice).sum();
         txtTotalAmount.setText(String.valueOf(totalAmount));
+
+        list = medicineService.getMedicineChoiceList();
+
+        // 3. Update prompt text using refreshed list
+        updateSelectedMedicineDetails(txtMedID.getValue());
+
+        loadMedicineChoiceBox();
+
+        clearFields();
     }
 
 
@@ -187,6 +264,15 @@ public class SalesFormController implements Initializable {
         // update total amount
         totalAmount = saleItemList.stream().mapToDouble(MedicineSale::getPrice).sum();
         txtTotalAmount.setText(String.valueOf(totalAmount));
+
+        list = medicineService.getMedicineChoiceList();
+
+        // 3. Update prompt text using refreshed list
+        updateSelectedMedicineDetails(txtMedID.getValue());
+
+        loadMedicineChoiceBox();
+
+        clearFields();
     }
 
     @Override @FXML
@@ -215,16 +301,22 @@ public class SalesFormController implements Initializable {
         });
 
         txtQuantity.textProperty().addListener((obs, oldVal, newVal) -> {
-            if(quantity>=Integer.parseInt(txtQuantity.getText()) && (txtQuantity.getText()!=null)) {
-                calculateTotal();
-            }else{
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Invalid Quantity");
-                alert.setHeaderText(null);
-                alert.setContentText("Quantity cannot be higher than available stock!");
-                alert.showAndWait();
-                clearFields();
+
+            if (newVal == null || newVal.isEmpty()) {
+                txtTotal.clear();
                 return;
+            }
+
+            try {
+                int enteredQty = Integer.parseInt(newVal);
+                if (enteredQty <= quantity) {
+                    calculateTotal();
+                } else {
+                    showQuantityWarning();
+                    txtQuantity.clear();
+                }
+            } catch (NumberFormatException e) {
+                txtQuantity.clear();
             }
         });
 
@@ -235,6 +327,14 @@ public class SalesFormController implements Initializable {
                 txtTotal.setText(String.valueOf(t1.getPrice()));
             }
         });
+    }
+
+    private void showQuantityWarning() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Invalid Quantity");
+        alert.setHeaderText(null);
+        alert.setContentText("Quantity cannot be higher than available stock!");
+        alert.showAndWait();
     }
 
     private void updateSelectedMedicineDetails(String selected) {
@@ -251,10 +351,6 @@ public class SalesFormController implements Initializable {
         }
     }
 
-
-    private void updateStock(String id, int qty) {
-        medicineService.updateStock(id,qty);
-    }
 
     private void saveOriginalStock() {
         originalStockList = medicineService.getMedicineChoiceList();
@@ -277,7 +373,6 @@ public class SalesFormController implements Initializable {
         if (price == null){
             return;
         }
-
         try {
             int qty = Integer.parseInt(txtQuantity.getText());
             double total = qty * price;
@@ -285,7 +380,6 @@ public class SalesFormController implements Initializable {
         } catch (NumberFormatException e) {
             txtTotal.setText(null);
         }
-
 
     }
 
@@ -297,9 +391,7 @@ public class SalesFormController implements Initializable {
         }
 
         String saleId=salesDtos.getLast().getSaleId();
-
         String part = "SAL";
-
         String numericPart = saleId.substring(3);
 
         int nextNumber = Integer.parseInt(numericPart) + 1;
@@ -309,15 +401,10 @@ public class SalesFormController implements Initializable {
 
     private void clearFields() {
 
-        System.out.println("Hello work");
-
         txtMedID.setValue(null);
         txtQuantity.clear();
         txtTotal.clear();
     }
 
-    private void loadSaleItem() {
-
-    }
 
 }
