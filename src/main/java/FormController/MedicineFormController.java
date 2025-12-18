@@ -27,8 +27,6 @@ public class MedicineFormController implements Initializable {
 
     MedicineService medicineService=new MedicineControl();
 
-
-
     @FXML
     private TableColumn<?, ?> col_brand;
 
@@ -104,7 +102,7 @@ public class MedicineFormController implements Initializable {
         Parent root= FXMLLoader.load(getClass().getResource("/View/LoginForm.fxml"));
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
-        stage.setTitle("Order");
+        stage.setTitle("Homepage");
         stage.show();
     }
 
@@ -119,7 +117,7 @@ public class MedicineFormController implements Initializable {
         Parent root= FXMLLoader.load(getClass().getResource("/View/SaleItemForm.fxml"));
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
-        stage.setTitle("Order");
+        stage.setTitle("Sale Items");
         stage.show();
     }
 
@@ -129,7 +127,7 @@ public class MedicineFormController implements Initializable {
         Parent root= FXMLLoader.load(getClass().getResource("/View/SalesForm.fxml"));
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
-        stage.setTitle("Order");
+        stage.setTitle("Sales");
         stage.show();
     }
 
@@ -139,7 +137,7 @@ public class MedicineFormController implements Initializable {
         Parent root= FXMLLoader.load(getClass().getResource("/View/SupplierForm.fxml"));
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
-        stage.setTitle("Order");
+        stage.setTitle("Supplier");
         stage.show();
     }
 
