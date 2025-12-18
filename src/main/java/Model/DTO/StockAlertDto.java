@@ -12,6 +12,7 @@ import java.util.Date;
 @ToString
 public class StockAlertDto {
 
+    @Id
     private int medicineId;
     private String medicineName;
     private String alertType; // "LOW_STOCK" or "EXPIRY"

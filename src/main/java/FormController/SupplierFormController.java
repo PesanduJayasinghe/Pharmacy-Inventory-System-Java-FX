@@ -92,7 +92,7 @@ public class SupplierFormController implements Initializable {
         Parent root= FXMLLoader.load(getClass().getResource("/View/LoginForm.fxml"));
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
-        stage.setTitle("Order");
+        stage.setTitle("Homepage");
         stage.show();
     }
 
@@ -102,7 +102,7 @@ public class SupplierFormController implements Initializable {
         Parent root= FXMLLoader.load(getClass().getResource("/View/MedicineForm.fxml"));
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
-        stage.setTitle("Order");
+        stage.setTitle("Medicine");
         stage.show();
     }
 
@@ -112,7 +112,7 @@ public class SupplierFormController implements Initializable {
         Parent root= FXMLLoader.load(getClass().getResource("/View/SaleItemForm.fxml"));
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
-        stage.setTitle("Order");
+        stage.setTitle("Sales Items");
         stage.show();
     }
 
@@ -122,7 +122,7 @@ public class SupplierFormController implements Initializable {
         Parent root= FXMLLoader.load(getClass().getResource("/View/SalesForm.fxml"));
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
-        stage.setTitle("Order");
+        stage.setTitle("Sales");
         stage.show();
     }
 
