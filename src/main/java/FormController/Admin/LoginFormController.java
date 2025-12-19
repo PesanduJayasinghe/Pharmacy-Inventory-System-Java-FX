@@ -1,4 +1,4 @@
-package FormController;
+package FormController.Admin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.IOException;
 
 
@@ -68,7 +67,7 @@ public class LoginFormController {
     @FXML
     void btnAdminLogin(ActionEvent event) throws IOException {
         if (txtAdminUsername.getText().equalsIgnoreCase("owner") && txtAdminPassword.getText().equalsIgnoreCase("1234")){
-            Parent root= FXMLLoader.load(getClass().getResource("/View/MedicineForm.fxml"));
+            Parent root= FXMLLoader.load(getClass().getResource("/View/Admin/MedicineForm.fxml"));
             stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Medicines");
@@ -99,9 +98,13 @@ public class LoginFormController {
     }
 
     @FXML
-    void btnCashierLogin(ActionEvent event) {
+    void btnCashierLogin(ActionEvent event) throws IOException {
         if (txtCashierUsername.getText().equalsIgnoreCase("user") && txtCashierPassword.getText().equalsIgnoreCase("1234")){
-
+            Parent root= FXMLLoader.load(getClass().getResource("/View/Cashier/PharmacistForm.fxml"));
+            stage=(Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Medicines");
+            stage.show();
         }else{
             errorMessagePane.setVisible(true);
             cashierPane.setVisible(false);
