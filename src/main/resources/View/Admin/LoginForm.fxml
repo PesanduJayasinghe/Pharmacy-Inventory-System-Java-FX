@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="btnLoginOption" prefHeight="555.0" prefWidth="540.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FormController.LoginFormController">
+<AnchorPane fx:id="btnLoginOption" prefHeight="555.0" prefWidth="540.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FormController.Admin.LoginFormController">
     <children>
       <ImageView fitHeight="555.0" fitWidth="546.0" layoutX="-2.0">
          <image>
-            <Image url="@../Images/Login.png" />
+            <Image url="@../../Images/Login.png" />
          </image>
       </ImageView>
         <AnchorPane fx:id="cashierPane" layoutX="129.0" layoutY="267.0" prefHeight="174.0" prefWidth="290.0" visible="false">
@@ -24,8 +24,14 @@
         </AnchorPane>
         <AnchorPane fx:id="loginOptionsPane" layoutX="167.0" layoutY="256.0" prefHeight="159.0" prefWidth="200.0">
             <children>
-                <Button layoutX="37.0" layoutY="33.0" mnemonicParsing="false" onAction="#btnAdmin" prefHeight="38.0" prefWidth="126.0" text="Admin " />
-                <Button layoutX="37.0" layoutY="100.0" mnemonicParsing="false" onAction="#btnCashier" prefHeight="38.0" prefWidth="126.0" text="Cashier" />
+                <Button layoutX="37.0" layoutY="33.0" mnemonicParsing="false" onAction="#btnAdmin" prefHeight="38.0" prefWidth="126.0" text="Admin ">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+                <Button layoutX="37.0" layoutY="100.0" mnemonicParsing="false" onAction="#btnCashier" prefHeight="38.0" prefWidth="126.0" text="Cashier">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
             </children>
         </AnchorPane>
         <AnchorPane fx:id="adminPane" layoutX="129.0" layoutY="278.0" prefHeight="174.0" prefWidth="290.0" visible="false">
@@ -40,7 +46,7 @@
          <children>
             <ImageView fitHeight="555.0" fitWidth="544.0">
                <image>
-                  <Image url="@../Images/Error%20message.png" />
+                  <Image url="@../../Images/Error%20message.png" />
                </image>
             </ImageView>
             <Button layoutX="106.0" layoutY="367.0" mnemonicParsing="false" onAction="#btnRetry" prefHeight="26.0" prefWidth="138.0" style="-fx-background-color: #00000000; -fx-text-fill: WHITE;" text="Retry">
@@ -55,7 +61,7 @@
             </Button>
             <ImageView fitHeight="203.0" fitWidth="419.0" layoutX="60.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/ErrorUsername.png" />
+                  <Image url="@../../Images/ErrorUsername.png" />
                </image>
             </ImageView>
          </children>
