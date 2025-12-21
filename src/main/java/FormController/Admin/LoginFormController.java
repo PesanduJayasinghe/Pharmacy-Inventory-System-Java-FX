@@ -86,7 +86,6 @@ public class LoginFormController {
         cashierPane.setVisible(true);
         username=txtCashierUsername;
         password=txtCashierPassword;
-
     }
 
     @FXML
@@ -112,8 +111,6 @@ public class LoginFormController {
         }
 
     }
-
-    //----------ERROR MESSAGE---------
 
     @FXML
     void btnMenu(ActionEvent event) {

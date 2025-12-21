@@ -219,7 +219,6 @@ public class MedicineFormController implements Initializable {
     }
 
     private void loadMedicineTable() {
-
         tblMedicine.setItems(medicineService.getMedicineDetails());
     }
 }
