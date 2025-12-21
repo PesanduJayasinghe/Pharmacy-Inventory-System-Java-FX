@@ -64,7 +64,6 @@ public class CashierWarningFormController implements Initializable {
 
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         WarningService warningService = new WarningControl();
