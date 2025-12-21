@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="554.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FormController.SalesFormController">
+<AnchorPane prefHeight="554.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FormController.Admin.SalesFormController">
    <children>
-      <ImageView fitHeight="665.0" fitWidth="859.0" layoutX="1.0" layoutY="1.0">
+      <ImageView fitHeight="665.0" fitWidth="859.0">
          <image>
-            <Image url="@../Images/Admin%20Table%202.png" />
+            <Image url="@../../Images/Admin%20Table%202.png" />
          </image>
       </ImageView>
       <AnchorPane fx:id="buttonPane" layoutX="67.0" layoutY="95.0" prefHeight="522.0" prefWidth="166.0">
@@ -56,7 +56,7 @@
          <children>
             <ImageView fitHeight="511.0" fitWidth="519.0" layoutX="9.0">
                <image>
-                  <Image url="@../Images/Sales.png" />
+                  <Image url="@../../Images/Sales.png" />
                </image>
             </ImageView>
             <TextField fx:id="txtSaleID" layoutX="43.0" layoutY="77.0" prefHeight="23.0" prefWidth="198.0" promptText="Sale ID" style="-fx-background-color: #00000000;" />
@@ -99,7 +99,19 @@
               </columns>
             </TableView>
             <Label layoutX="259.0" layoutY="36.0" prefHeight="184.0" prefWidth="263.0" style="-fx-background-color: white;" />
+            <TableView fx:id="tblSales" layoutX="260.0" layoutY="35.0" prefHeight="184.0" prefWidth="263.0" style="-fx-border-color: green;">
+               <columns>
+                  <TableColumn fx:id="col_sale_id" prefWidth="91.199951171875" text="Sale ID" />
+                  <TableColumn fx:id="col_date" prefWidth="84.0" text="Date" />
+                  <TableColumn fx:id="col_total_of_sales" prefWidth="87.199951171875" text="Total" />
+               </columns>
+            </TableView>
          </children>
       </AnchorPane>
+      <Button layoutX="798.0" layoutY="135.0" mnemonicParsing="false" onAction="#btnRefresh" prefHeight="42.0" prefWidth="51.0" style="-fx-background-color: red; -fx-border-color: green; -fx-border-width: 2;" text="🔄">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
