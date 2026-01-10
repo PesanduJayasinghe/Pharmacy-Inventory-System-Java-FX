@@ -30,11 +30,9 @@ public class SupplierRepositoryImpl implements SupplierRepository {
                         rs.getString("address")
                 ));
             }
-
         } catch (SQLException e) {
             throw new RuntimeException("Failed to fetch supplier details: " + e.getMessage(), e);
         }
-
         return list;
     }
 

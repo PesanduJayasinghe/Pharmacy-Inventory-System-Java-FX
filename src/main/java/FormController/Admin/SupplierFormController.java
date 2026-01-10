@@ -1,9 +1,8 @@
-package FormController;
+package FormController.Admin;
 
 import Model.DTO.SupplierDto;
 import Service.Supplier.SupplierControl;
 import Service.Supplier.SupplierService;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,14 +19,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class SupplierFormController implements Initializable {
 
     SupplierService supplierService=new SupplierControl();
-
 
     @FXML
     private AnchorPane buttonPane;
@@ -83,13 +79,10 @@ public class SupplierFormController implements Initializable {
         }
     }
 
-
-
-
     @FXML
     void btnHomepage(ActionEvent event) throws IOException {
         Stage stage;
-        Parent root= FXMLLoader.load(getClass().getResource("/View/LoginForm.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("/View/Admin/LoginForm.fxml"));
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.setTitle("Homepage");
@@ -99,7 +92,7 @@ public class SupplierFormController implements Initializable {
     @FXML
     void btnMedicine(ActionEvent event) throws IOException {
         Stage stage;
-        Parent root= FXMLLoader.load(getClass().getResource("/View/MedicineForm.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("/View/Admin/MedicineForm.fxml"));
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.setTitle("Medicine");
@@ -109,7 +102,7 @@ public class SupplierFormController implements Initializable {
     @FXML
     void btnSaleItems(ActionEvent event) throws IOException {
         Stage stage;
-        Parent root= FXMLLoader.load(getClass().getResource("/View/SaleItemForm.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("/View/Admin/SaleItemForm.fxml"));
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.setTitle("Sales Items");
@@ -119,7 +112,7 @@ public class SupplierFormController implements Initializable {
     @FXML
     void btnSales(ActionEvent event) throws IOException {
         Stage stage;
-        Parent root= FXMLLoader.load(getClass().getResource("/View/SalesForm.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("/View/Admin/SalesForm.fxml"));
         stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.setTitle("Sales");
@@ -142,9 +135,7 @@ public class SupplierFormController implements Initializable {
         } else {
             String contact = txtContact.getText();
             String address = txtAddress.getText();
-
             SupplierDto supplierDto = new SupplierDto(id, name, contact, address);
-
             supplierService.updateSupplier(supplierDto);
 
             loadSupplierTable();
@@ -154,8 +145,13 @@ public class SupplierFormController implements Initializable {
     }
 
     @FXML
-    void btnWarnings(ActionEvent event) {
-
+    void btnWarnings(ActionEvent event) throws IOException {
+        Stage stage;
+        Parent root= FXMLLoader.load(getClass().getResource("/View/Admin/WarningForm.fxml"));
+        stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Warnings");
+        stage.show();
     }
 
     @FXML
