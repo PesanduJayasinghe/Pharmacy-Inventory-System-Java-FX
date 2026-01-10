@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="554.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FormController.Cashier.CashierWarningFormController">
+<AnchorPane prefHeight="554.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FormController.Cashier.CashierWarningFormController">
     <children>
       <ImageView fitHeight="665.0" fitWidth="859.0">
          <image>
@@ -28,6 +28,11 @@
                         <Font name="System Bold Italic" size="15.0" />
                     </font>
                 </Button>
+            <Button alignment="CENTER" layoutY="169.0" mnemonicParsing="false" onAction="#btnOrders" prefHeight="42.0" prefWidth="166.0" style="-fx-background-color: #00000000;" text="ORDER">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Button>
             </children>
         </AnchorPane>
         <AnchorPane layoutX="233.0" layoutY="95.0" prefHeight="511.0" prefWidth="550.0">

@@ -81,4 +81,15 @@ public class CashierWarningFormController implements Initializable {
         tblLowStock.setItems(warningService.getLowStockMedicines());
     }
 
+
+    @FXML
+    void btnOrders(ActionEvent event) throws IOException {
+        Stage stage;
+        Parent root= FXMLLoader.load(getClass().getResource("/View/Cashier/PharmacistForm.fxml"));
+        stage= (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("OrderItem");
+        stage.show();
+    }
+
 }
