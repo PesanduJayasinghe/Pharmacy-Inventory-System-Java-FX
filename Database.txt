@@ -1,0 +1,75 @@
+-- 1. Create database
+CREATE DATABASE IF NOT EXISTS Pharmacy;
+USE Pharmacy;
+
+-- 2. Supplier table
+CREATE TABLE supplier (
+    supplierId VARCHAR(50) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    contact VARCHAR(50),
+    address VARCHAR(255)
+);
+
+-- 3. Medicines table
+CREATE TABLE medicines (
+    medicineId VARCHAR(50) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    brand VARCHAR(100),
+    expiryDate DATE,
+    quantity INT,
+    price DOUBLE,
+    supplierId VARCHAR(50),
+    CONSTRAINT fk_medicine_supplier
+        FOREIGN KEY (supplierId)
+        REFERENCES supplier(supplierId)
+);
+
+-- 4. Sales table
+CREATE TABLE sales (
+    saleId VARCHAR(50) PRIMARY KEY,
+    date DATE NOT NULL,
+    totalAmount DOUBLE
+);
+
+-- 5. Sales Item table
+CREATE TABLE salesitem (
+    saleItemId VARCHAR(50) PRIMARY KEY,
+    saleId VARCHAR(50),
+    medicineId VARCHAR(50),
+    quantity INT,
+    price DOUBLE,
+    CONSTRAINT fk_salesitem_sale
+        FOREIGN KEY (saleId)
+        REFERENCES sales(saleId),
+    CONSTRAINT fk_salesitem_medicine
+        FOREIGN KEY (medicineId)
+        REFERENCES medicines(medicineId)
+);
+
+-- 6. Insert sample suppliers
+INSERT INTO supplier (supplierId, name, contact, address) VALUES
+('SUP001', 'HealthCorp', '123-456-7890', '123 Health St, Cityville'),
+('SUP002', 'MediSupply', '987-654-3210', '456 Pharma Ave, Townsville'),
+('SUP003', 'PharmaPlus', '555-555-5555', '789 Wellness Rd, Villagetown');
+
+-- 7. Insert sample medicines
+INSERT INTO medicines (medicineId, name, brand, expiryDate, quantity, price, supplierId) VALUES
+('MED001', 'Paracetamol', 'PainAway', '2026-12-31', 100, 0.50, 'SUP001'),
+('MED002', 'Ibuprofen', 'InflameX', '2025-11-30', 50, 0.75, 'SUP002'),
+('MED003', 'Amoxicillin', 'AntiBac', '2027-06-30', 200, 1.20, 'SUP001'),
+('MED004', 'Cough Syrup', 'CoughFree', '2025-08-31', 80, 2.50, 'SUP003'),
+('MED005', 'Vitamin C', 'NutriHealth', '2026-03-31', 150, 0.30, 'SUP002');
+
+-- 8. Insert sample sales
+INSERT INTO sales (saleId, date, totalAmount) VALUES
+('SAL001', '2025-11-01', 15.50),
+('SAL002', '2025-11-02', 22.75),
+('SAL003', '2025-11-03', 10.00);
+
+-- 9. Insert sample sales items
+INSERT INTO salesitem (saleItemId, saleId, medicineId, quantity, price) VALUES
+('SI001', 'SAL001', 'MED001', 10, 0.50),
+('SI002', 'SAL001', 'MED004', 2, 2.50),
+('SI003', 'SAL002', 'MED002', 20, 0.75),
+('SI004', 'SAL002', 'MED005', 10, 0.30),
+('SI005', 'SAL003', 'MED003', 5, 1.20);
